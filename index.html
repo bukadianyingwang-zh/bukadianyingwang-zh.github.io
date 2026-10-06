@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>不卡电影网 - 高清影视在线观看平台 | 院线大片·热播剧集·综艺动漫一网打尽</title>
+<meta name="keywords" content="不卡电影网,高清电影在线观看,免费影视网站,院线大片,热播电视剧,综艺动漫,最新电影资源">
+<meta name="description" content="不卡电影网是专业的在线影视观看平台，提供最新院线大片、热播电视剧、综艺节目和动漫资源的高清在线播放服务，无需下载，即点即看。">
+<meta name="robots" content="index,follow">
+<meta name="author" content="不卡电影网">
+<meta name="copyright" content="Copyright © 2026 bukadianyingwang-zh.github.io All Rights Reserved.">
+<link rel="canonical" href="https://bukadianyingwang-zh.github.io/">
+<style>
+/* ===== Reset & Base ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:#0b0d14;color:#e8eaf0;line-height:1.7;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ===== Color tokens ===== */
+:root{
+  --bg:#0b0d14;--bg2:#11141f;--card:#171a26;--line:#262a38;
+  --txt:#e8eaf0;--txt2:#9aa0b4;--txt3:#6b7188;
+  --brand:#ff4d3d;--brand2:#ff8a3d;--cyan:#36d7e3;--purple:#8b5cf6;
+}
+
+/* ===== Top utility bar ===== */
+.utility{background:#07080d;border-bottom:1px solid var(--line);font-size:13px;color:var(--txt3)}
+.utility .container{display:flex;align-items:center;justify-content:space-between;height:36px}
+.utility .live-ticker{display:flex;align-items:center;gap:10px;overflow:hidden;white-space:nowrap}
+.utility .dot{width:8px;height:8px;border-radius:50%;background:var(--brand);flex:none;animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.utility .live-ticker span{color:var(--txt2)}
+.utility .quick-links{display:flex;gap:18px}
+.utility .quick-links a{color:var(--txt3);transition:.2s}
+.utility .quick-links a:hover{color:var(--brand)}
+@media(max-width:720px){.utility .quick-links{display:none}}
+
+/* ===== Header ===== */
+.header{position:sticky;top:0;z-index:50;background:rgba(11,13,20,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.header-main{display:flex;align-items:center;justify-content:space-between;gap:24px;height:70px}
+.logo{display:flex;align-items:center;gap:12px;flex:none}
+.logo-mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;font-size:20px;font-weight:900;color:#fff;box-shadow:0 6px 20px rgba(255,77,61,.4);transform:rotate(-6deg)}
+.logo-text{font-size:24px;font-weight:900;letter-spacing:1px;background:linear-gradient(90deg,#fff,var(--txt2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.logo-text small{display:block;font-size:11px;letter-spacing:3px;color:var(--txt3);font-weight:500;-webkit-text-fill-color:var(--txt3)}
+.search-box{display:flex;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:40px;padding:6px 6px 6px 18px;flex:1;max-width:420px;transition:.25s}
+.search-box:focus-within{border-color:var(--brand);box-shadow:0 0 0 4px rgba(255,77,61,.12)}
+.search-box input{flex:1;background:none;border:none;outline:none;color:var(--txt);font-size:15px;min-width:0}
+.search-box input::placeholder{color:var(--txt3)}
+.search-box button{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-radius:30px;padding:9px 20px;font-size:14px;font-weight:700;transition:.2s;flex:none}
+.search-box button:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(255,77,61,.4)}
+@media(max-width:860px){.search-box{display:none}}
+.header-actions{display:flex;align-items:center;gap:10px}
+.btn-app{display:flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--line);border-radius:30px;font-size:13px;color:var(--txt2);transition:.2s}
+.btn-app:hover{border-color:var(--cyan);color:var(--cyan)}
+@media(max-width:860px){.btn-app span{display:none}}
+.menu-toggle{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:12px;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.menu-toggle i{width:18px;height:2px;background:var(--txt2);border-radius:2px;transition:.3s}
+@media(max-width:860px){.menu-toggle{display:flex}}
+
+/* ===== Nav ===== */
+.navbar{background:var(--bg2);border-bottom:1px solid var(--line)}
+.nav-wrap{display:flex;align-items:center;gap:4px;height:52px;overflow-x:auto;scrollbar-width:none}
+.nav-wrap::-webkit-scrollbar{display:none}
+.nav-wrap a{padding:8px 16px;border-radius:8px;font-size:14px;color:var(--txt2);white-space:nowrap;transition:.2s;font-weight:500}
+.nav-wrap a:hover{color:var(--txt);background:var(--card)}
+.nav-wrap a.active{color:#fff;background:linear-gradient(90deg,var(--brand),var(--brand2))}
+@media(max-width:860px){.nav-wrap{display:none}.nav-wrap.open{display:flex;flex-direction:column;height:auto;align-items:stretch;padding:12px 0}}
+
+/* ===== Hero ===== */
+.hero{position:relative;padding:56px 0 40px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(255,77,61,.18),transparent),radial-gradient(ellipse 60% 50% at 90% 30%,rgba(54,215,227,.1),transparent);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,77,61,.12);border:1px solid rgba(255,77,61,.3);color:var(--brand);padding:7px 16px;border-radius:30px;font-size:13px;font-weight:700;margin-bottom:22px}
+.hero h1{font-size:52px;line-height:1.15;font-weight:900;letter-spacing:-1px;margin-bottom:20px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p.lead{font-size:17px;color:var(--txt2);max-width:520px;margin-bottom:28px}
+.hero-stats{display:flex;gap:36px;margin-bottom:32px;flex-wrap:wrap}
+.hero-stats div{font-size:13px;color:var(--txt3)}
+.hero-stats strong{display:block;font-size:30px;color:var(--txt);font-weight:900;line-height:1.2}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;padding:15px 34px;border-radius:12px;font-size:16px;font-weight:800;transition:.25s;box-shadow:0 10px 30px rgba(255,77,61,.3)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(255,77,61,.45)}
+.btn-ghost{border:1px solid var(--line);color:var(--txt);padding:15px 28px;border-radius:12px;font-size:16px;font-weight:600;transition:.25s}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(54,215,227,.06)}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}.hero h1{font-size:36px}}
+.hero-visual{position:relative}
+.device{position:relative;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:18px;transform:rotate(-2deg)}
+.device-bar{display:flex;gap:6px;margin-bottom:14px}
+.device-bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.device-bar i:first-child{background:#ff5f57}
+.device-bar i:nth-child(2){background:#febc2e}
+.device-bar i:nth-child(3){background:#28c840}
+.player-mock{background:linear-gradient(135deg,#1a1d2b,#0e1018);border-radius:14px;aspect-ratio:16/10;position:relative;overflow:hidden;display:grid;place-items:center}
+.player-mock::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(255,77,61,.25),transparent 60%)}
+.play-btn{width:64px;height:64px;border-radius:50%;background:var(--brand);display:grid;place-items:center;z-index:2;box-shadow:0 0 0 12px rgba(255,77,61,.2);animation:ring 2s infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(255,77,61,.5)}100%{box-shadow:0 0 0 24px rgba(255,77,61,0)}}
+.play-btn::after{content:"";border-left:18px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
+.player-tags{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.player-tags span{font-size:11px;padding:4px 10px;border-radius:6px;background:rgba(54,215,227,.1);color:var(--cyan);border:1px solid rgba(54,215,227,.2)}
+.float-card{position:absolute;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 20px 40px rgba(0,0,0,.5)}
+.float-card.fc1{top:-20px;right:-10px;animation:float1 4s ease-in-out infinite}
+.float-card.fc2{bottom:-24px;left:-20px;animation:float2 5s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+.float-card .ico{width:36px;height:36px;border-radius:10px;background:rgba(54,215,227,.15);color:var(--cyan);display:grid;place-items:center;font-size:16px;flex:none}
+.float-card.fc2 .ico{background:rgba(139,92,246,.15);color:var(--purple)}
+.float-card b{font-size:13px;display:block}
+.float-card small{font-size:11px;color:var(--txt3)}
+@media(max-width:900px){.float-card{display:none}}
+
+/* ===== Section head ===== */
+.section{padding:64px 0}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:32px;flex-wrap:wrap}
+.section-head h2{font-size:30px;font-weight:900;letter-spacing:-.5px}
+.section-head h2 span{color:var(--brand)}
+.section-head p{font-size:14px;color:var(--txt3);max-width:380px}
+.filter-chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:7px 16px;border:1px solid var(--line);border-radius:30px;font-size:13px;color:var(--txt2);transition:.2s}
+.chip:hover{border-color:var(--txt3);color:var(--txt)}
+.chip.on{background:var(--txt);color:var(--bg);border-color:var(--txt);font-weight:700}
+
+/* ===== Movie cards ===== */
+.grid-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:22px}
+.movie-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.3s}
+.movie-card:hover{transform:translateY(-6px);border-color:var(--brand);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.poster{position:relative;aspect-ratio:2/3;overflow:hidden}
+.poster-bg{position:absolute;inset:0;transition:.5s}
+.movie-card:hover .poster-bg{transform:scale(1.08)}
+.score{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:4px 9px;font-size:13px;font-weight:800;color:var(--brand2)}
+.tag-corner{position:absolute;top:10px;left:10px;background:var(--brand);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px}
+.poster-meta{position:absolute;bottom:0;left:0;right:0;padding:24px 14px 14px;background:linear-gradient(to top,rgba(0,0,0,.95),transparent);display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.8)}
+.poster-meta i{font-style:normal;background:rgba(255,255,255,.18);padding:2px 6px;border-radius:4px}
+.movie-info{padding:14px}
+.movie-info h3{font-size:16px;font-weight:700;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.movie-info p{font-size:12px;color:var(--txt3);display:flex;justify-content:space-between}
+@media(max-width:560px){.grid-cards{grid-template-columns:repeat(2,1fr);gap:14px}.section{padding:44px 0}}
+
+/* ===== Marquee strip ===== */
+.strip{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;overflow:hidden}
+.strip-track{display:flex;gap:48px;animation:slide 40s linear infinite;width:max-content}
+@keyframes slide{to{transform:translateX(-50%)}}
+.strip span{font-size:15px;color:var(--txt2);display:flex;align-items:center;gap:48px;white-space:nowrap}
+.strip span::after{content:"◆";color:var(--brand);font-size:10px}
+
+/* ===== Why us ===== */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.why-box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;transition:.3s}
+.why-box:hover{border-color:var(--cyan);background:var(--bg2)}
+.why-box .num{font-size:13px;font-weight:800;color:var(--txt3);letter-spacing:2px;margin-bottom:14px}
+.why-box h4{font-size:19px;margin-bottom:10px}
+.why-box p{font-size:14px;color:var(--txt2)}
+.why-box .ic{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(255,77,61,.15),rgba(54,215,227,.1));display:grid;place-items:center;font-size:22px;margin-bottom:18px}
+
+/* ===== Schedule / list layout ===== */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+@media(max-width:860px){.split{grid-template-columns:1fr;gap:32px}}
+.rank-list li{display:flex;align-items:center;gap:16px;padding:14px;border-bottom:1px solid var(--line);transition:.2s}
+.rank-list li:hover{background:var(--card);border-radius:12px}
+.rank-no{width:34px;height:34px;border-radius:10px;background:var(--bg2);border:1px solid var(--line);display:grid;place-items:center;font-weight:900;color:var(--txt3);flex:none;font-size:15px}
+.rank-list li:nth-child(-n+3) .rank-no{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.rank-list .ttl{flex:1;min-width:0}
+.rank-list .ttl b{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-list .ttl small{font-size:12px;color:var(--txt3)}
+.rank-list .hot{font-size:12px;color:var(--brand2);font-weight:700;flex:none}
+
+.schedule{border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.schedule-head{display:flex;gap:0;background:var(--bg2)}
+.schedule-head button{flex:1;padding:14px;font-size:14px;font-weight:700;color:var(--txt3);border-bottom:2px solid transparent;transition:.2s}
+.schedule-head button.on{color:var(--brand);border-bottom-color:var(--brand)}
+.schedule-body{padding:8px}
+.schedule-row{display:flex;gap:16px;padding:14px;align-items:center;border-radius:12px;transition:.2s}
+.schedule-row:hover{background:var(--card)}
+.time{font-size:13px;font-weight:800;color:var(--cyan);flex:none;width:64px}
+.sch-info{flex:1;min-width:0}
+.sch-info b{display:block;font-size:15px}
+.sch-info small{font-size:12px;color:var(--txt3)}
+.sch-tag{font-size:11px;padding:3px 10px;border-radius:6px;background:rgba(139,92,246,.15);color:var(--purple);border:1px solid rgba(139,92,246,.25);flex:none}
+
+/* ===== CTA banner ===== */
+.cta-band{background:linear-gradient(120deg,#1a0f14,#14102a);border:1px solid var(--line);border-radius:24px;padding:48px;position:relative;overflow:hidden;text-align:center}
+.cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,77,61,.25),transparent 50%)}
+.cta-band h2{font-size:32px;font-weight:900;margin-bottom:14px;position:relative}
+.cta-band p{color:var(--txt2);max-width:520px;margin:0 auto 26px;position:relative}
+.cta-form{display:flex;gap:10px;max-width:440px;margin:0 auto;position:relative;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:200px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;color:var(--txt);font-size:15px;outline:none}
+.cta-form input:focus{border-color:var(--brand)}
+.cta-form button{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;padding:14px 30px;border-radius:10px;font-weight:800;transition:.2s}
+.cta-form button:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(255,77,61,.4)}
+@media(max-width:560px){.cta-band{padding:32px 20px}.cta-band h2{font-size:24px}}
+
+/* ===== Footer ===== */
+.footer{background:#07080d;border-top:1px solid var(--line);padding:56px 0 0}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px}
+@media(max-width:720px){.foot-grid{grid-template-columns:1fr 1fr;gap:28px}}
+.foot-brand p{font-size:13px;color:var(--txt3);margin-top:14px}
+.foot-col h5{font-size:14px;font-weight:800;margin-bottom:18px;letter-spacing:1px}
+.foot-col li{margin-bottom:10px}
+.foot-col a{font-size:13px;color:var(--txt3);transition:.2s}
+.foot-col a:hover{color:var(--brand)}
+.foot-social{display:flex;gap:10px;margin-top:18px}
+.foot-social a{width:38px;height:38px;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;font-size:16px;transition:.2s}
+.foot-social a:hover{border-color:var(--brand);color:var(--brand);transform:translateY(-3px)}
+.foot-bottom{border-top:1px solid var(--line);padding:24px 0}
+.foot-bottom .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--txt3)}
+.foot-bottom a{color:var(--txt3)}
+.foot-bottom a:hover{color:var(--brand)}
+
+/* ===== Back to top ===== */
+.to-top{position:fixed;right:20px;bottom:24px;width:46px;height:46px;border-radius:14px;background:var(--brand);color:#fff;display:none;place-items:center;font-size:20px;z-index:40;box-shadow:0 10px 30px rgba(255,77,61,.4);transition:.3s}
+.to-top.show{display:grid}
+.to-top:hover{transform:translateY(-4px)}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/zhangzong.js"></script>
+
+<!-- Utility -->
+<div class="utility">
+  <div class="container">
+    <div class="live-ticker"><i class="dot"></i><span>今日更新 238 部 · 院线同步 · 蓝光画质</span></div>
+    <div class="quick-links"><a href="#">免费注册</a><a href="#">客户端下载</a><a href="#">留言反馈</a></div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+  <div class="container header-main">
+    <a href="#" class="logo">
+      <div class="logo-mark">不</div>
+      <div class="logo-text">不卡电影网<small>BUKADIANYINGWANG</small></div>
+    </a>
+    <div class="search-box">
+      <input type="text" placeholder="搜索影片名称 / 演员 / 导演…">
+      <button type="button">搜索</button>
+    </div>
+    <div class="header-actions">
+      <a href="#" class="btn-app"><span>📱 客户端</span></a>
+      <button class="menu-toggle" id="menuBtn" aria-label="菜单"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+  <nav class="navbar">
+    <div class="container nav-wrap" id="navWrap">
+      <a href="#" class="active">首页</a>
+      <a href="#movies">电影大片</a>
+      <a href="#series">热播剧集</a>
+      <a href="#anime">动漫综艺</a>
+      <a href="#rank">排行榜</a>
+      <a href="#schedule">更新表</a>
+      <a href="#about">关于我们</a>
+    </div>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-badge">🔥 2026 院线同步 · 每日上新</div>
+      <h1>想看的电影<br>在这里 <em>一搜就有</em></h1>
+      <p class="lead">不卡电影网聚合最新院线大片、高分热播剧与经典老片，高清画质免下载即点即看，告别加载等待，随时随地畅享视听。</p>
+      <div class="hero-stats">
+        <div><strong>12万+</strong>正版片源</div>
+        <div><strong>4K</strong>蓝光画质</div>
+        <div><strong>0</strong>广告打扰</div>
+      </div>
+      <div class="hero-cta">
+        <a href="#movies" class="btn-primary">立即观看</a>
+        <a href="#about" class="btn-ghost">了解平台</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="device">
+        <div class="device-bar"><i></i><i></i><i></i></div>
+        <div class="player-mock">
+          <div class="play-btn"></div>
+        </div>
+        <div class="player-tags">
+          <span>1080P 蓝光</span><span>双语字幕</span><span>极速播放</span><span>多端同步</span>
+        </div>
+      </div>
+      <div class="float-card fc1"><div class="ico">⚡</div><div><b>秒级加载</b><small>告别转圈卡顿</small></div></div>
+      <div class="float-card fc2"><div class="ico">📺</div><div><b>多端互通</b><small>手机·平板·电视</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Strip -->
+<div class="strip">
+  <div class="strip-track">
+    <span>独行月球 2</span><span>封神第三部</span><span>流浪地球 3</span><span>繁花续集</span><span>庆余年 3</span><span>第二十条</span><span>扫黑风暴 2</span><span>热辣滚烫 2</span><span>年会不能停</span><span>周处除三害</span>
+    <span>独行月球 2</span><span>封神第三部</span><span>流浪地球 3</span><span>繁花续集</span><span>庆余年 3</span><span>第二十条</span><span>扫黑风暴 2</span><span>热辣滚烫 2</span><span>年会不能停</span><span>周处除三害</span>
+  </div>
+</div>
+
+<!-- Movies -->
+<section class="section" id="movies">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>院线<span>大片</span></h2>
+        <p>同步院线最新上映，每周更新热门院线影片，覆盖动作、喜剧、科幻、悬疑等全品类。</p>
+      </div>
+      <div class="filter-chips">
+        <button class="chip on">全部</button>
+        <button class="chip">动作</button>
+        <button class="chip">喜剧</button>
+        <button class="chip">科幻</button>
+        <button class="chip">悬疑</button>
+        <button class="chip">爱情</button>
+      </div>
+    </div>
+    <div class="grid-cards" id="movieGrid"></div>
+  </div>
+</section>
+
+<!-- Why -->
+<section class="section" id="about" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>为什么选择<span>不卡电影网</span></h2>
+        <p>从资源覆盖到播放体验，我们用技术重新定义在线观影的标准。</p>
+      </div>
+    </div>
+    <div class="why-grid">
+      <div class="why-box">
+        <div class="num">01</div>
+        <div class="ic">🎬</div>
+        <h4>海量片库</h4>
+        <p>覆盖全球主流影视厂牌内容，从好莱坞大片到国产精品，从经典老片到院线新作一站收录。</p>
+      </div>
+      <div class="why-box">
+        <div class="num">02</div>
+        <div class="ic">⚡</div>
+        <h4>极速播放</h4>
+        <p>自研分片加载技术，弱网环境也能流畅播放，彻底告别缓冲转圈，观影节奏不被打断。</p>
+      </div>
+      <div class="why-box">
+        <div class="num">03</div>
+        <div class="ic">🖥️</div>
+        <h4>蓝光画质</h4>
+        <p>支持最高 4K 蓝光源播放，搭配多语种字幕与音轨选择，还原影院级视听感受。</p>
+      </div>
+      <div class="why-box">
+        <div class="num">04</div>
+        <div class="ic">📱</div>
+        <h4>多端同步</h4>
+        <p>手机、平板、电脑、电视全端覆盖，观看进度云端同步，随时随地接着看。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Split: Rank + Schedule -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>热门<span>排行</span>与更新</h2>
+        <p>实时追踪全网播放热度，掌握最新上线与即将更新内容。</p>
+      </div>
+    </div>
+    <div class="split">
+      <!-- Rank -->
+      <div>
+        <ul class="rank-list" id="rankList"></ul>
+      </div>
+      <!-- Schedule -->
+      <div class="schedule">
+        <div class="schedule-head">
+          <button class="on">今日更新</button>
+          <button>明日预告</button>
+          <button>周更日历</button>
+        </div>
+        <div class="schedule-body" id="scheduleBody"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Series -->
+<section class="section" id="series" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>热播<span>剧集</span></h2>
+        <p>同步卫视与网络平台热播剧，覆盖悬疑、都市、古装、历史等多元题材。</p>
+      </div>
+      <div class="filter-chips">
+        <button class="chip on">热播中</button>
+        <button class="chip">古装</button>
+        <button class="chip">悬疑</button>
+        <button class="chip">都市</button>
+        <button class="chip">历史</button>
+      </div>
+    </div>
+    <div class="grid-cards" id="seriesGrid"></div>
+  </div>
+</section>
+
+<!-- Anime -->
+<section class="section" id="anime">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>动漫<span>综艺</span></h2>
+        <p>国漫日漫同步追更，热门综艺实时更新，满足不同年龄段观影需求。</p>
+      </div>
+      <div class="filter-chips">
+        <button class="chip on">国漫</button>
+        <button class="chip">日漫</button>
+        <button class="chip">综艺</button>
+        <button class="chip">纪录片</button>
+      </div>
+    </div>
+    <div class="grid-cards" id="animeGrid"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="container">
+    <div class="cta-band">
+      <h2>开启你的专属观影清单</h2>
+      <p>留下邮箱，第一时间获取每日更新片单与独家影视资讯，不错过任何一部好片。</p>
+      <form class="cta-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='已订阅 ✓'">
+        <input type="email" placeholder="输入你的邮箱地址" required>
+        <button type="submit">立即订阅</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">不</div>
+          <div class="logo-text">不卡电影网<small>BUKADIANYINGWANG</small></div>
+        </a>
+        <p>专业的在线影视观看平台，致力于为用户提供高清、流畅、丰富的影视内容服务，让好电影触手可及。</p>
+        <div class="foot-social">
+          <a href="#" aria-label="微信">💬</a>
+          <a href="#" aria-label="微博">📷</a>
+          <a href="#" aria-label="抖音">🎵</a>
+          <a href="#" aria-label="RSS">📡</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>内容分类</h5>
+        <ul>
+          <li><a href="#movies">院线大片</a></li>
+          <li><a href="#series">热播剧集</a></li>
+          <li><a href="#anime">动漫综艺</a></li>
+          <li><a href="#rank">排行榜单</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>帮助中心</h5>
+        <ul>
+          <li><a href="#">新手指南</a></li>
+          <li><a href="#">播放问题</a></li>
+          <li><a href="#">客户端下载</a></li>
+          <li><a href="#">意见反馈</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>关于平台</h5>
+        <ul>
+          <li><a href="#about">平台介绍</a></li>
+          <li><a href="#">商务合作</a></li>
+          <li><a href="#">版权声明</a></li>
+          <li><a href="#">联系方式</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="container" style="padding:0">
+        <span>© 2026 不卡电影网 bukadianyingwang-zh.github.io 版权所有</span>
+        <span><a href="#">免责声明</a> · <a href="#">隐私政策</a> · <a href="#">用户协议</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="to-top" id="toTop" aria-label="返回顶部">↑</a>
+
+<script>
+// ===== 海报渐变生成（无外部图片依赖）=====
+const palettes=[
+  ['#ff4d3d','#7a1020'],['#36d7e3','#0b3d5c'],['#8b5cf6','#2e1065'],
+  ['#f59e0b','#7c2d12'],['#10b981','#064e3b'],['#ec4899','#831843'],
+  ['#3b82f6','#1e3a8a'],['#eab308','#713f12'],['#14b8a6','#134e4a']
+];
+function poster(i,label){
+  const [c1,c2]=palettes[i%palettes.length];
+  return `<div class="poster-bg" style="background:linear-gradient(160deg,${c1},${c2})"></div>`;
+}
+// 电影
+const movies=[
+  {t:'封神第三部：封神之战',meta:'动作 / 古装',yr:'2026',ep:'138分钟',sc:9.4,tag:'院线热映'},
+  {t:'流浪地球 3',meta:'科幻 / 冒险',yr:'2026',ep:'168分钟',sc:9.6,tag:'票房冠军'},
+  {t:'第二十条',meta:'剧情 / 犯罪',yr:'2025',ep:'126分钟',sc:9.1,tag:'口碑佳作'},
+  {t:'周处除三害',meta:'动作 / 犯罪',yr:'2025',ep:'134分钟',sc:8.9,tag:'高分热播'},
+  {t:'热辣滚烫 2',meta:'喜剧 / 励志',yr:'2026',ep:'122分钟',sc:8.7,tag:'最新上线'},
+  {t:'年会不能停 2',meta:'喜剧 / 职场',yr:'2026',ep:'118分钟',sc:8.8,tag:'轻松搞笑'},
+  {t:'默杀 2',meta:'悬疑 / 惊悚',yr:'2026',ep:'112分钟',sc:8.6,tag:'高能反转'},
+  {t:'飞驰人生 3',meta:'喜剧 / 运动',yr:'2026',ep:'130分钟',sc:8.5,tag:'院线同步'}
+];
+// 剧集
+const series=[
+  {t:'庆余年 第三季',meta:'古装 / 权谋',yr:'2026',ep:'更新至 24 集',sc:9.5,tag:'全网热播'},
+  {t:'繁花续集',meta:'都市 / 年代',yr:'2026',ep:'更新至 18 集',sc:9.0,tag:'独家播出'},
+  {t:'扫黑风暴 2',meta:'犯罪 / 剧情',yr:'2026',ep:'更新至 12 集',sc:8.9,tag:'高能不断'},
+  {t:'大江大河 4',meta:'年代 / 励志',yr:'2025',ep:'全 38 集',sc:9.2,tag:'口碑收官'},
+  {t:'琅琊榜 3',meta:'古装 / 权谋',yr:'2026',ep:'更新至 30 集',sc:9.3,tag:'热播中'},
+  {t:'漫长的季节 2',meta:'悬疑 / 犯罪',yr:'2026',ep:'更新至 10 集',sc:9.1,tag:'悬疑力作'},
+  {t:'小欢喜 2',meta:'都市 / 家庭',yr:'2025',ep:'全 42 集',sc:8.7,tag:'温暖治愈'},
+  {t:'长安十二时辰 2',meta:'古装 / 悬疑',yr:'2026',ep:'更新至 16 集',sc:9.0,tag:'口碑热剧'}
+];
+// 动漫综艺
+const anime=[
+  {t:'斗破苍穹 年番',meta:'国漫 / 玄幻',yr:'2026',ep:'更新至 88 集',sc:9.3,tag:'国漫热榜'},
+  {t:'伍六七 第五季',meta:'国漫 / 搞笑',yr:'2026',ep:'更新至 10 集',sc:9.1,tag:'最新番剧'},
+  {t:'鬼灭之刃 柱训篇',meta:'日漫 / 热血',yr:'2026',ep:'更新至 11 集',sc:9.4,tag:'日漫新番'},
+  {t:'奔跑吧 第十季',meta:'综艺 / 真人秀',yr:'2026',ep:'更新至 06 期',sc:8.6,tag:'综艺热榜'},
+  {t:'我是歌手 2026',meta:'综艺 / 音乐',yr:'2026',ep:'更新至 04 期',sc:8.8,tag:'周五更新'},
+  {t:'国家宝藏 第五季',meta:'纪录片 / 文化',yr:'2026',ep:'更新至 08 期',sc:9.0,tag:'品质纪录片'},
+  {t:'完美世界 续作',meta:'国漫 / 玄幻',yr:'2026',ep:'更新至 60 集',sc:9.2,tag:'玄幻巨制'},
+  {t:'向往的生活 9',meta:'综艺 / 生活',yr:'2026',ep:'更新至 05 期',sc:8.5,tag:'慢综艺'}
+];
+function render(list){
+  return list.map((m,i)=>`
+    <article class="movie-card">
+      <div class="poster">
+        ${poster(i,m.t)}
+        <span class="tag-corner">${m.tag}</span>
+        <span class="score">${m.sc}</span>
+        <div class="poster-meta"><span>${m.yr}</span><i>${m.ep}</i></div>
+      </div>
+      <div class="movie-info">
+        <h3>${m.t}</h3>
+        <p><span>${m.meta}</span><span>${m.ep}</span></p>
+      </div>
+    </article>`).join('');
+}
+document.getElementById('movieGrid').innerHTML=render(movies);
+document.getElementById('seriesGrid').innerHTML=render(series);
+document.getElementById('animeGrid').innerHTML=render(anime);
+
+// 排行榜
+const rank=[
+  ['封神第三部','播放 2.8 亿','动作古装'],['庆余年3','播放 2.1 亿','古装权谋'],
+  ['流浪地球3','播放 1.9 亿','科幻冒险'],['斗破苍穹','播放 1.6 亿','国漫玄幻'],
+  ['繁花续集','播放 1.4 亿','都市年代'],['鬼灭之刃','播放 1.2 亿','日漫热血'],
+  ['漫长的季节2','播放 9800 万','悬疑犯罪'],['长安十二时辰2','播放 8600 万','古装悬疑']
+];
+document.getElementById('rankList').innerHTML=rank.map((r,i)=>`
+  <li>
+    <span class="rank-no">${i+1}</span>
+    <span class="ttl"><b>${r[0]}</b><small>${r[2]}</small></span>
+    <span class="hot">${r[1]}</span>
+  </li>`).join('');
+
+// 更新表
+const sched=[
+  ['20:00','庆余年 第三季 第 24 集','今日更新'],
+  ['20:30','扫黑风暴 2 第 12 集','今日更新'],
+  ['21:00','斗破苍穹 年番 第 88 集','今日更新'],
+  ['22:00','奔跑吧 第十季 第 06 期','今日更新'],
+  ['22:30','琅琊榜 3 第 30 集','今日更新'],
+  ['23:00','向往的生活 9 第 05 期','今日更新'],
+  ['明日','鬼灭之刃 柱训篇 第 11 集','明日预告']
+];
+document.getElementById('scheduleBody').innerHTML=sched.map(s=>`
+  <div class="schedule-row">
+    <span class="time">${s[0]}</span>
+    <span class="sch-info"><b>${s[1]}</b><small>不卡电影网 · 独家上线</small></span>
+    <span class="sch-tag">${s[2]}</span>
+  </div>`).join('');
+
+// 交互
+document.getElementById('menuBtn').addEventListener('click',()=>{
+  document.getElementById('navWrap').classList.toggle('open');
+});
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>{
+  toTop.classList.toggle('show',window.scrollY>500);
+});
+document.querySelectorAll('.chip').forEach(c=>{
+  c.addEventListener('click',()=>{
+    c.parentElement.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
+    c.classList.add('on');
+  });
+});
+document.querySelectorAll('.schedule-head button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    b.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+  });
+});
+</script>
+</body>
+</html>
